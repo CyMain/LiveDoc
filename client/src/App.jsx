@@ -1,4 +1,7 @@
 import HomePage from './pages/HomePage/HomePage'
+import CreateRoomPage from './pages/CreateRoomPage/CreateRoomPage'
+import RoomsListPage from './pages/RoomsListPage/RoomsListPage'
+import EditingPage from './pages/EditingPage/EditingPage'
 import { useState } from 'react'
 import './App.css'
 
@@ -36,7 +39,7 @@ function App() {
   }else if(page === "edit"){
     return (
       <>
-        <EdittingPage
+        <EditingPage
           changePage={changePage}
         />
       </>

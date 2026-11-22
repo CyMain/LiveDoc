@@ -1,4 +1,4 @@
-export default function EdittingPage(){
+export default function EditingPage(){
     return(
         <>
         </>

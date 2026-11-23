@@ -40,7 +40,7 @@ function RoomsList(){
             room_name:"Nuh-uh 2",
             passworded: true,
         },
-{
+        {
             room_name:"Nuh-uh 3",
             passworded: false,
         }

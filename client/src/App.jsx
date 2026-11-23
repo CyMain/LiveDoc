@@ -2,59 +2,40 @@ import HomePage from './pages/HomePage/HomePage'
 import CreateRoomPage from './pages/CreateRoomPage/CreateRoomPage'
 import RoomsListPage from './pages/RoomsListPage/RoomsListPage'
 import EditingPage from './pages/EditingPage/EditingPage'
-import { useState } from 'react'
+import { PageHandlerProvider } from './providers/PageHandlerProvider'
 import './App.css'
+import { usePageHandler } from './providers/PageHandlerProvider'
 
-function App() {
-  const [page, setPage] = useState("home")
 
-  function changePage(targetPage){
-    setPage(targetPage)
-  }
+function AppContent(){
+  const {page, changePage}= usePageHandler()
 
-  if (page === "home"){
+  if (page === "home") {
+    return <HomePage />;
+  } else if (page === "create") {
+    return <CreateRoomPage />;
+  } else if (page === "rooms") {
+    return <RoomsListPage />;
+  } else if (page === "edit") {
+    return <EditingPage />;
+  } else {
     return (
-      <>
-        <HomePage
-          changePage={changePage}
-        />
-      </>
-    )
-  }else if(page === "create"){
-    return (
-      <>
-        <CreateRoomPage
-          changePage={changePage}
-        />
-      </>
-    )
-  }else if(page === "rooms"){
-    return (
-      <>
-        <RoomsListPage
-          changePage={changePage}
-        />
-      </>
-    )
-  }else if(page === "edit"){
-    return (
-      <>
-        <EditingPage
-          changePage={changePage}
-        />
-      </>
-    )
-  }else {
-    return(
       <>
         <h1>wRONG PAGE BRAH</h1>
-        <button
-          onClick={()=>changePage("home")}
-        >Back To Home</button>
+        <button onClick={() => changePage("home")}>Back To Home</button>
       </>
-    )
+    );
   }
+}
 
+function App() {
+  return(
+    <>
+      <PageHandlerProvider>
+        <AppContent/>
+      </PageHandlerProvider>
+    </>
+  )
 }
 
 export default App

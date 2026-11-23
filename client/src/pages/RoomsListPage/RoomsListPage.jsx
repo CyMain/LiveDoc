@@ -1,5 +1,6 @@
 import { LockKeyholeIcon } from "lucide-react";
 import { useState } from "react"
+import { usePageHandler } from "../../providers/PageHandlerProvider";
 
 function PasswordPrompt(){
     return(
@@ -12,12 +13,25 @@ function PasswordPrompt(){
 }
 
 function RoomListItem({ room_data }){
+    const { toEditRoom } = usePageHandler()
+
+    function handleToEdit(){
+        const data = {
+            room_name: room_data.room_name,
+            room_users: 1
+        }
+        toEditRoom(data)
+    }
+
     return(
         <>
             <div className="room-list-item">
                 <div className="top">
                     <h3>{room_data.room_name}</h3>
-                    <button className="join-room-btn">JOIN</button>
+                    <button
+                        className="join-room-btn"
+                        onClick={handleToEdit}
+                    >JOIN</button>
                 </div>
                 <div className="bottom">
                     {
@@ -65,7 +79,10 @@ function RoomsList(){
     )
 }
 
-export default function RoomsListPage({ changePage }){
+export default function RoomsListPage(){
+    const { changePage } = usePageHandler()
+
+
     function backToHome(){
         changePage("home")
     }

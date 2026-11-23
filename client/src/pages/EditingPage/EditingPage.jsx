@@ -1,4 +1,5 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { usePageHandler } from "../../providers/PageHandlerProvider"
 
 function RibbonOption ({ option_data }){
     function option_function(){
@@ -36,6 +37,13 @@ function Ribbon( { ribbon_data } ){
         }
     ]
 
+    const {changePage} = usePageHandler()
+
+    
+    function handleLeave(){
+        changePage("home")
+    }
+
     return(
         <>
             <div className="ribbon">
@@ -44,7 +52,10 @@ function Ribbon( { ribbon_data } ){
                         <h1>{room_name}</h1>
                         <span>Users:{room_users}</span>
                     </div>
-                    <button className="leave_room_btn">
+                    <button
+                        className="leave_room_btn"
+                        onClick={handleLeave}
+                    >
                         Leave Room
                     </button>
                 </div>
@@ -68,16 +79,25 @@ function Ribbon( { ribbon_data } ){
     )
 }
 
-export default function EditingPage({ room_data, changePage }){
-    const this_room_data = {
+export default function EditingPage({ changePage }){
+    const [this_room_data, set_this_room_data] = useState({
         room_name:"Greetings",
         room_users:1,
         active_file:"none", //To be used for the download feature
-    }
+    })
+    const {editRoomData} = usePageHandler()
 
     useEffect(()=>{
+        if (editRoomData){
+            set_this_room_data((prev)=>({
+                ...prev,
+                ...editRoomData
+            }))
+        }
         console.log("editing room open")
-    }, [])    
+        console.log("room_data: ", this_room_data)
+        console.log("picked_room_data: ", editRoomData)
+    }, [editRoomData])    
 
     return(
         <>

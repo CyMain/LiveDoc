@@ -1,3 +1,5 @@
+import { usePageHandler } from "../../providers/PageHandlerProvider"
+
 function SocialsLinks(){
     return(
         <>
@@ -13,7 +15,8 @@ function SocialsLinks(){
     )
 }
 
-export default function HomePage({ changePage }){
+export default function HomePage(){
+    const {changePage} = usePageHandler()
 
     function toCreatePage(){
         changePage("create")

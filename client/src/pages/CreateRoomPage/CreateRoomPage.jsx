@@ -1,7 +1,9 @@
 import { useState } from "react"
+import { usePageHandler } from "../../providers/PageHandlerProvider"
 
-export default function CreateRoomPage({ changePage }){
+export default function CreateRoomPage(){
     const [passworded, setPassworded] = useState(false)
+    const {toEditRoom, changePage} = usePageHandler()
 
     function backToHome(){
         changePage("home")
@@ -52,7 +54,9 @@ export default function CreateRoomPage({ changePage }){
                 ) : ""
             }
 
-            <button>Create Room</button>
+            <button
+                onClick={toEditRoom}
+            >Create Room</button>
         </>
     )
 }

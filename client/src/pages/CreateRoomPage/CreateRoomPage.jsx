@@ -20,7 +20,7 @@ export default function CreateRoomPage(){
                 className="quick-link-btn"
                 onClick={backToHome}
             >
-                <a href="">Back</a>
+                Back
             </button>
             <h1>Create Your Room</h1>
             <label htmlFor="">Room Name:</label>

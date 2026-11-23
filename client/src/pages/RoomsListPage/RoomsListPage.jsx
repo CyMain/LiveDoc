@@ -91,7 +91,7 @@ export default function RoomsListPage(){
         <>
             <button
                 onClick={backToHome}>
-                <a href="">Back</a>
+                Back
             </button>
 
             <h1>Select A Room</h1>

@@ -79,7 +79,7 @@ function Ribbon( { ribbon_data } ){
     )
 }
 
-export default function EditingPage({ changePage }){
+export default function EditingPage(){
     const [this_room_data, set_this_room_data] = useState({
         room_name:"Greetings",
         room_users:1,

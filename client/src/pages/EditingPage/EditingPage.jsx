@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { usePageHandler } from "../../providers/PageHandlerProvider"
+import { useRoomContext } from "../../providers/RoomHandlerProvider"
 
 function RibbonOption ({ option_data }){
     function option_function(){
@@ -86,6 +87,9 @@ export default function EditingPage(){
         active_file:"none", //To be used for the download feature
     })
     const {editRoomData} = usePageHandler()
+    let files_breakdown = null
+
+    const {room_files, filesBreakdown} = useRoomContext() 
 
     useEffect(()=>{
         if (editRoomData){
@@ -98,6 +102,20 @@ export default function EditingPage(){
         console.log("room_data: ", this_room_data)
         console.log("picked_room_data: ", editRoomData)
     }, [editRoomData])    
+
+    useEffect(()=>{
+        if (room_files){
+            console.log("Room Files: ", room_files)
+            async function loadBreakdown(){
+                const promiseList = filesBreakdown()
+                files_breakdown = await Promise.all(promiseList)
+                console.log("Files Breakdown: ", files_breakdown)
+            }
+
+            loadBreakdown()
+        }
+
+    },[room_files])
 
     return(
         <>

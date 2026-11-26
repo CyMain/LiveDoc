@@ -14,6 +14,12 @@ export default function CreateRoomPage(){
         setPassworded(target_checkbox.checked)
     }
 
+    function handleUpload(e){
+        const file = e.target.files?.[0];
+        if (!file) return;
+        console.log("Selected file: ", file)
+    }
+
     return(
         <>
             <button
@@ -60,7 +66,7 @@ export default function CreateRoomPage(){
                     type="file"
                     name=""
                     id=""
-                    
+                    onChange={handleUpload}            
                 />
             </label>
 

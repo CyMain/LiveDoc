@@ -15,9 +15,9 @@ export default function CreateRoomPage(){
     }
 
     function handleUpload(e){
-        const file = e.target.files?.[0];
-        if (!file) return;
-        console.log("Selected file: ", file)
+        const files = [...e.target.files];
+        if (!files) return;
+        console.log("Selected files: ", files)
     }
 
     return(
@@ -64,6 +64,7 @@ export default function CreateRoomPage(){
                 Upload a file: 
                 <input
                     type="file"
+                    multiple
                     name=""
                     id=""
                     onChange={handleUpload}            

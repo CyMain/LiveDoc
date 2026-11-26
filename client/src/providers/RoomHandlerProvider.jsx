@@ -5,13 +5,22 @@ const RoomContext = createContext(null)
 function RoomHandlerProvider({children}){
     const [inRoom, setInRoom] = useState(false)
     const [room_name, setRoomName] = useState("")
+    const [room_id, setRoomID] = useState("")
+    const [roomPassword, setRoomPassword] = useState("")
+    const [room_files, setRoomFiles] = useState(null)
 
 
     const value = {
         inRoom,
         setInRoom,
         room_name,
-        setRoomName
+        setRoomName,
+        room_id,
+        setRoomID,
+        roomPassword,
+        setRoomPassword,
+        room_files,
+        setRoomFiles
     }
 
     return(

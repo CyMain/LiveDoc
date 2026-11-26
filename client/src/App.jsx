@@ -1,10 +1,11 @@
-import HomePage from './pages/HomePage/HomePage'
-import CreateRoomPage from './pages/CreateRoomPage/CreateRoomPage'
-import RoomsListPage from './pages/RoomsListPage/RoomsListPage'
-import EditingPage from './pages/EditingPage/EditingPage'
-import { PageHandlerProvider } from './providers/PageHandlerProvider'
-import './App.css'
-import { usePageHandler } from './providers/PageHandlerProvider'
+import HomePage from './pages/HomePage/HomePage';
+import CreateRoomPage from './pages/CreateRoomPage/CreateRoomPage';
+import RoomsListPage from './pages/RoomsListPage/RoomsListPage';
+import EditingPage from './pages/EditingPage/EditingPage';
+import { PageHandlerProvider } from './providers/PageHandlerProvider';
+import { RoomHandlerProvider } from './providers/RoomHandlerProvider';
+import './App.css';
+import { usePageHandler } from './providers/PageHandlerProvider';
 
 
 function AppContent(){
@@ -32,7 +33,9 @@ function App() {
   return(
     <>
       <PageHandlerProvider>
-        <AppContent/>
+        <RoomHandlerProvider>
+          <AppContent/>
+        </RoomHandlerProvider>
       </PageHandlerProvider>
     </>
   )

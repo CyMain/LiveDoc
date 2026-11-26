@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const RoomContext = createContext(null)
 
-function RoomHandlerProvider({children}){
+export function RoomHandlerProvider({children}){
     const [inRoom, setInRoom] = useState(false)
     const [room_name, setRoomName] = useState("")
     const [room_id, setRoomID] = useState("")

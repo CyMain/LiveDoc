@@ -1,9 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { usePageHandler } from "../../providers/PageHandlerProvider"
+import { useRoomContext } from "../../providers/RoomHandlerProvider"
 
 export default function CreateRoomPage(){
     const [passworded, setPassworded] = useState(false)
     const {toEditRoom, changePage} = usePageHandler()
+
+    const {room_files, setRoomFiles} = useRoomContext()
+
+    useEffect(()=>{
+        console.log("room_files: ", room_files)
+    }, [room_files])
 
     function backToHome(){
         changePage("home")
@@ -17,6 +24,7 @@ export default function CreateRoomPage(){
     function handleUpload(e){
         const files = [...e.target.files];
         if (!files) return;
+        setRoomFiles(files)
         console.log("Selected files: ", files)
     }
 

@@ -55,7 +55,13 @@ export default function CreateRoomPage(){
             }
 
             <label htmlFor="">
-                Upload a file: <input type="file" name="" id="" />
+                Upload a file: 
+                <input
+                    type="file"
+                    name=""
+                    id=""
+                    
+                />
             </label>
 
             <button

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { usePageHandler } from "../../providers/PageHandlerProvider"
 import { useRoomContext } from "../../providers/RoomHandlerProvider"
+import Editor from "@monaco-editor/react";
 
 function RibbonOption ({ option_data }){
     function option_function(){
@@ -80,6 +81,42 @@ function Ribbon( { ribbon_data } ){
     )
 }
 
+function EditingArea({ active_file_data }){
+    console.log("rendering editor...")
+    const [currContent, setCurrContent] = useState(active_file_data.file_content)
+
+    function handleTextChange(e){
+        setCurrContent(e.target.value)
+    }
+
+    // rendering or mounting
+    if (active_file_data.file_ext == "py"){
+        return(<>
+            <div className="editor-wrapper">
+                <Editor
+                    height={"100dvh"}
+                    width={"100%"}
+                    value={active_file_data.file_content}
+                    language={"python"}
+                    theme="vs-dark"
+                />
+            </div>
+        </>)
+    } else if( active_file_data.file_ext == "txt"){
+         return (<>
+         <div className="">
+            <textarea 
+                name=""
+                id=""
+                value={currContent}
+                onChange={handleTextChange}
+            ></textarea>
+         </div>
+        </>)
+    }
+    
+}
+
 export default function EditingPage(){
     const [this_room_data, set_this_room_data] = useState({
         room_name:"Greetings",
@@ -110,6 +147,10 @@ export default function EditingPage(){
                 const promiseList = filesBreakdown()
                 files_breakdown = await Promise.all(promiseList)
                 console.log("Files Breakdown: ", files_breakdown)
+                set_this_room_data((prev)=>({
+                    ...prev,
+                    active_file: files_breakdown[0]
+                }))
             }
 
             loadBreakdown()
@@ -125,6 +166,12 @@ export default function EditingPage(){
                     room_users:this_room_data.room_users
                 }}
             />
+
+            <div className="">
+                <EditingArea
+                    active_file_data={this_room_data.active_file}
+                />
+            </div>
         </>
     )
 }

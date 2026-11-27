@@ -1,0 +1,60 @@
+.ribbon{
+    display: flex;
+    flex-direction: column;
+    >.top{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        >.leave-room-btn{
+            background-color: red;
+            border: none;
+            border-radius: 2rem;
+            height: 1.4rem;
+            padding: 0 0.4rem;
+        }
+        >.top{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            >.room-name{
+                font-size: 1.4rem;
+            }
+            >span{
+                font-size: 0.8rem;
+            }
+        }
+    }
+    >.bottom{
+        >.ribbon-options{
+            display: flex;
+            list-style: none;
+            >.ribbon-option{
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                >.background-shape{
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.14);
+                    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+                }
+                cursor: pointer;
+                width: 8rem;
+                height: 1.4rem;
+
+                &:hover{
+                    >.background-shape{
+                        background: rgba(0, 0, 0, 0.05);
+                    }
+                }
+            }
+        }
+    }
+}

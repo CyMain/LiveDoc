@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { usePageHandler } from "../../providers/PageHandlerProvider"
 import { useRoomContext } from "../../providers/RoomHandlerProvider"
+import "./EditingPage.css"
 import Editor from "@monaco-editor/react";
 
 function RibbonOption ({ option_data }){
@@ -14,7 +15,10 @@ function RibbonOption ({ option_data }){
                 className="ribbon-option"
                 onClick={option_function}
             >
-                { option_data.option_name }
+                <div className="background-shape"></div>
+                <span>
+                    { option_data.option_name }
+                </span>
             </li>
         </>
     )
@@ -51,11 +55,11 @@ function Ribbon( { ribbon_data } ){
             <div className="ribbon">
                 <div className="top">
                     <div className="top">
-                        <h1>{room_name}</h1>
+                        <h1 className="room-name">{room_name}</h1>
                         <span>Users:{room_users}</span>
                     </div>
                     <button
-                        className="leave_room_btn"
+                        className="leave-room-btn"
                         onClick={handleLeave}
                     >
                         Leave Room
